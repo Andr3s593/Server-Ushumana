@@ -14,12 +14,21 @@ const ReservaSchema = mongoose.Schema({
         required: true,
        
     },
+    Email: {
+        type: String,
+        required: true,       
+    },
+    Telefono: {
+        type: Number,
+        required: true,
+       
+    },
     Numero_adultos: {
         type: Number,
         required: true,
        
     },
-    Numero_niños: {
+    Numero_ninos: {
         type: Number,
         required: true,
       
@@ -27,8 +36,8 @@ const ReservaSchema = mongoose.Schema({
     Fechadereserva: {
         type: Date, 
         required: true,
-   },
-    
+        unique: true
+   },    
     Mascotas: {
         type: Number,
         required: true

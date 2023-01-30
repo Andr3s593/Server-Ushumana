@@ -5,7 +5,7 @@ const reservacontroller = require('../controllers/reservacontroller');
 
 //API Usuariocontroller
 
-router.post('/', reservaontroller.crearReserva);
+router.post('/', reservacontroller.crearReserva);
 router.get('/' , reservacontroller.obtenerReservas);
 router.put('/:id' , reservacontroller.actualizarReserva);
 router.get('/:id' ,reservacontroller.obtenerReserva);

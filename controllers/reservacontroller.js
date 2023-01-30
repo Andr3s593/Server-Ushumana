@@ -3,7 +3,7 @@ const Reserva = require("../models/reservamodel");
 
 exports.crearReserva = async (req, res) => {
     try {
-        const exist = await Reserva.findOne({ id: req.body.id });
+        const exist = await Reserva.findOne({ fechadereserva: req.body.fechadereserva });
         if (exist) return res.status(400).send({error: 'La reserva ya existe.'});
 
         let reserva = new Reserva(req.body);
@@ -37,7 +37,7 @@ exports.obtenerReservas = async (req, res) => {
 exports.actualizarReserva = async (req, res) => {
 
     try {
-        const { nombres, apellidos, numero_adultos, numero_niños,fechadereserva, mascotas, descripcion} = req.body;
+        const { nombres, apellidos, email, telefono, numero_adultos, numero_ninos,fechadereserva, mascotas, descripcion} = req.body;
 
         let reserva = await Reserva.findById(req.params.id);
 
@@ -47,10 +47,12 @@ exports.actualizarReserva = async (req, res) => {
         }
         reserva.Nombres = nombres;
         reserva.Apellidos = apellidos;
+        reserva.Email = email;
+        reserva.Telefono = telefono;
         reserva.Numero_adultos = numero_adultos;
-        reserva.Numero_niños = numero_niños;
+        reserva.Numero_ninos = numero_ninos;
         reserva.Fechadereserva = fechadereserva;
-        reserva.Mascota = mascotas;
+        reserva.Mascotas = mascotas;
         reserva.Descripcion = descripcion;
        
 

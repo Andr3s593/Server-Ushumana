@@ -23,6 +23,11 @@ const UsuarioSchema = mongoose.Schema({
         required: true,
         select: false
     },
+    passwordRepeat: {
+        type: String,
+        required: true,
+        select: false
+    },
     fecha_de_nacimiento: {
         type: Date,
         required: true

@@ -39,7 +39,7 @@ exports.obtenerUsuarios = async (req, res) => {
 exports.actualizarUsuario = async (req, res) => {
 
     try {
-        const { nombres, apellidos, email, password, fecha_de_nacimiento} = req.body;
+        const { nombres, apellidos, email, password, passwordRepeat, fecha_de_nacimiento} = req.body;
 
         let usuario = await Usuario.findById(req.params.id);
 
@@ -51,6 +51,7 @@ exports.actualizarUsuario = async (req, res) => {
         usuario.apellidos = apellidos;
         usuario.email = email;
         usuario.password = password;
+        usuario.passwordRepeat = passwordRepeat;
         usuario.fecha_de_nacimiento = fecha_de_nacimiento;
 
         usuario = await Usuario.findOneAndUpdate({ _id: req.params.id},usuario, {new: true});
