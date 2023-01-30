@@ -10,6 +10,9 @@ app.use(express.json());
 //Usuario// 
 app.use('/api/usuario-Ushumana',require('./routes/usuarioroutes'));
 //Fin Usuario//
+//Reserva// 
+app.use('/api/reserva-Ushumana',require('./routes/reservaroutes'));
+//Fin Reserva//
 app.listen(4000, () => {
     console.log('Connected....Server')
 })
