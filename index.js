@@ -13,6 +13,9 @@ app.use('/api/usuario-Ushumana',require('./routes/usuarioroutes'));
 //Reserva// 
 app.use('/api/reserva-Ushumana',require('./routes/reservaroutes'));
 //Fin Reserva//
+//FormaPago// 
+app.use('/api/formapago-Ushumana',require('./routes/formapagoroutes'));
+//Fin FormaPago//
 app.listen(4000, () => {
     console.log('Connected....Server')
 })
