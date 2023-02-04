@@ -9,6 +9,8 @@ app.use(cors());
 app.use(express.json());
 //Usuario// 
 app.use('/api/usuario-Ushumana',require('./routes/usuarioroutes'));
+app.use('/api/pedidos-Ushumana',require('./routes/pedidoroutes'));
+
 //Fin Usuario//
 app.listen(4000, () => {
     console.log('Connected....Server')
