@@ -9,7 +9,9 @@ app.use(cors());
 app.use(express.json());
 //Usuario// 
 app.use('/api/usuario-Ushumana',require('./routes/usuarioroutes'));
-//Fin Usuario//
+//Tickets//
+app.use('/api/tickets-Ushumana',require('./routes/ticketsroutes'));
+//Fin Tickets//
 app.listen(4000, () => {
     console.log('Connected....Server')
 })
