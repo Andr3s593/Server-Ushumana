@@ -6,7 +6,7 @@ const formapagocontroller = require('../controllers/formapagocontroller');
 //API Usuariocontroller
 
 router.post('/', formapagocontroller.crearFormaPago);
-router.get('/' , formapagocontroller.obtenerFormaPago);
+router.get('/' , formapagocontroller.obtenerFormaPagos);
 router.put('/:id' , formapagocontroller.actualizarFormaPago);
 router.get('/:id' ,formapagocontroller.obtenerFormaPago);
 router.delete('/:id' ,formapagocontroller.eliminarFormaPago);

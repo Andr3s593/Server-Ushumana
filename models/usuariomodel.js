@@ -23,7 +23,7 @@ const UsuarioSchema = mongoose.Schema({
         required: true,
         select: false
     },
-    fecha_de_nacimiento: {
+    fechadenacimiento: {
         type: Date,
         required: true
     }

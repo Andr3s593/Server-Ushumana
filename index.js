@@ -13,8 +13,11 @@ app.use('/api/usuario-Ushumana',require('./routes/usuarioroutes'));
 //Reserva// 
 app.use('/api/reserva-Ushumana',require('./routes/reservaroutes'));
 //Fin Reserva//
+//Reserva// 
+app.use('/api/pedidos-Ushumana',require('./routes/pedidoroutes'));
+//Fin Reserva//
 //FormaPago// 
-app.use('/api/formapago-Ushumana',require('./routes/formapagoroutes'));
+app.use('/api/pagoTarjeta-Ushumana',require('./routes/formapagoroutes'));
 //Fin FormaPago//
 app.listen(4000, () => {
     console.log('Connected....Server')

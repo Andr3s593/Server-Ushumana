@@ -1,44 +1,31 @@
 const mongoose = require('mongoose');
 
-const FormaPagoSchema = mongoose.Schema({ 
+const FormaPagoSchema = mongoose.Schema({
 
-Nombres: {
-    type: String,
-    required: true
-    },   
+    nombres: {
+        type: String,
+        required: true
+    },
+    apellidos: {
+        type: String,
+        required: true,
 
-
-Apellidos: {
-    type: String,
-    required: true,
-   
-},
-
-
-Email: {
-    type: String,
-    required: true,
-    unique: true
-},
-
-
-Tarjeta: {
-    type: String,
-    required: true,
-},
-
-Numero_Tarjeta:{
-type: Number,
-required: true,
-},
-
-
-
-
-Fecha_Caducidad: {
-    type: Date,
-    required: true
-}
+    },
+    email: {
+        type: String,
+        required: true,        
+    },
+    tarjeta: {
+        type: String,
+        required: true,
+    },
+    numerotarjeta: {
+        type: Number,
+        required: true,
+    },
+    fechacaducidad: {
+        type: Date,
+        required: true
+    }
 });
-
 module.exports = mongoose.model('FormaPago', FormaPagoSchema);

@@ -3,101 +3,92 @@ const FormaPago = require("../models/formapagomodel");
 
 exports.crearFormaPago = async (req, res) => {
     try {
-        const exist = await FormaPago.findOne({ id: req.body.id });
-        if (exist) return res.status(400).send({error: 'Ya a completado el pago.'});
+        let formaPago;
+        //Creamos el formaPago
+        formaPago = new FormaPago(req.body);
 
-        let formapago = new FormaPago(req.body);
+        await formaPago.save();
+        res.send(formaPago);
 
-        // Guardamos el usuario en la base de datos
-        await formapago.save();
-
-        // Enviamos la respuesta al cliente
-        res.send(formapago);
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Hubo un error al Pagar.');
+        console.log(error),
+            res.status(500).send('Hubo un error al crear el registro');
+
     }
 }
 
 
-exports.obtenerFormasPago = async (req, res) => {
+
+exports.obtenerFormaPagos = async (req, res) => {
 
     try {
-        
-        const formaspago = await FormasPago.find();
-        res.json(formaspago)
+
+        const formaPagos = await FormaPago.find();
+        res.json(formaPagos)
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al obtener las formas de pago.');
-        
+            res.status(500).send('Hubo un error al obtener los formaPagos.');
+
     }
 }
 
 exports.actualizarFormaPago = async (req, res) => {
-
     try {
-        const { nombres, apellidos, email, tarjeta, numero_tarjeta, fecha_caducidad} = req.body;
+        const { nombres, apellidos, email, tarjeta, numero_Tarjeta, fecha_Caducidad } = req.body;
+        let formaPago = await FormaPago.findById(req.params.id);
 
-        let formapago = await FormaPago.findById(req.params.id);
-
-        if(!formapago) {
-            res.status(404).json({ msg: 'No se a realizado el pago.'})
-
+        if (!formaPago) {
+            return res.status(404).json({ msg: 'No se encontró el formaPago.' });
         }
-        formapago.Nombres = nombres;
-        formapago.Apellidos = apellidos;
-        formapago.Email = email;
-        formapago.Tarjeta = tarjeta;
-        formapago.Numero_Tarjeta = numero_tarjeta;
-        formapago.Fecha_Caducidad = fecha_caducidad;
-      
-       
 
+        formaPago.nombres = nombres;
+        formaPago.apellidos = apellidos;
+        formaPago.email = email;
+        formaPago.tarjeta = tarjeta;
+        formaPago.numerotarjeta = numero_Tarjeta;
+        formaPago.fechacaducidad = fecha_Caducidad;
 
-        formapago = await FormaPago.findOneAndUpdate({ _id: req.params.id},formapago, {new: true});
-        res.json(formapago)
-
-
+        formaPago = await FormaPago.findByIdAndUpdate(req.params.id, formaPago, { new: true });
+        return res.status(200).json(formaPago);
     } catch (error) {
-        console.log(error)
-        res.status(500).send('Hubo un error al actualizar el pago');
+        console.log(error);
+        return res.status(500).send('Hubo un error al actualizar el formaPago.');
     }
-
-}
+};
 
 exports.obtenerFormaPago = async (req, res) => {
 
     try {
-        let formapago = await FormaPago.findById(req.params.id);
-        if(!formapago) {
-            res.status(404).json({ msg: 'No existe el pago'})
+        let formaPago = await FormaPago.findById(req.params.id);
+        if (!formaPago) {
+            res.status(404).json({ msg: 'No existe el formaPago.' })
 
         }
-        res.json(formapago)
+        res.json(formaPago)
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al pagar');
+            res.status(500).send('Hubo un error al obtener el formaPago.');
     }
 }
 
 exports.eliminarFormaPago = async (req, res) => {
 
     try {
-        let formapago = await FormaPago.findById(req.params.id);
+        let formaPago = await FormaPago.findById(req.params.id);
 
-        if(!formapago) {
-            res.status(404).json({ msg: 'No existe el pago.'})
+        if (!formaPago) {
+            res.status(404).json({ msg: 'No existe el formaPago.' })
 
         }
         await FormaPago.findOneAndRemove({ _id: req.params.id })
-        res.json({ msg:'Pago eliminada exitosamente.'})
+        res.json({ msg: 'FormaPago eliminado exitosamente.' })
 
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al eliminar la pago.');
+            res.status(500).send('Hubo un error al eliminar el formaPago.');
     }
 
 }

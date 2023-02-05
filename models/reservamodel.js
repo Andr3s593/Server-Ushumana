@@ -5,38 +5,36 @@ const ReservaSchema = mongoose.Schema({
         type: Date, 
         default: Date.now()
    },
-    Nombres: {
+    nombres: {
     type: String,
     required: true
     },   
-    Apellidos: {
+    apellidos: {
         type: String,
         required: true,
        
     },
-    Numero_adultos: {
+    numeroadultos: {
         type: Number,
         required: true,
        
     },
-    Numero_niños: {
+    numeroninos: {
         type: Number,
         required: true,
       
     },
-    Fechadereserva: {
+    fechadereserva: {
         type: Date, 
         required: true,
-   },
-    
-    Mascotas: {
+   },    
+    mascotas: {
         type: Number,
         required: true
     },
-    Descripcion: {
+    descripcion: {
         type: String,
-        required: true,
-       
+        required: true,       
     }
 });
 module.exports = mongoose.model('Reserva', ReservaSchema);
