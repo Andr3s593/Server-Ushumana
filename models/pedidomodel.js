@@ -1,27 +1,22 @@
 const mongoose = require('mongoose');
-const pedidomodel = require('./pedidomodel');
 
 const PedidoSchema = mongoose.Schema({
-
     Fechadecreacion: {
         type: Date,
         default: Date.now()
     },
-
-    NombrePlatillo: {
+    nombreplatillo: {
         type: String,
         required: true
     },
 
-    Cantidad: {
+    cantidad: {
         type: Number,
         required: true
     },
-
-    PrecioPlatillo: {
+    precioplatillo: {
         type: Number,
         required: true
     },
-
 });
 module.exports = mongoose.model('Pedido', PedidoSchema);

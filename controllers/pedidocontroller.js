@@ -3,20 +3,20 @@ const Pedido = require("../models/pedidomodel");
 
 exports.crearPedido = async (req, res) => {
     try {
-        const exist = await Pedido.findOne({ id: req.body.id });
-        if (exist) return res.status(400).send({error: 'El pedido ya existe.'});
-
-        let pedido = new Pedido(req.body);
+        let pedido;
+        //Creamos el pedido
+        pedido = new Pedido(req.body);
 
         await pedido.save();
-
-        // Enviamos la respuesta al cliente
         res.send(pedido);
+
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Hubo un error al crear el pedido.');
+        console.log(error),
+        res.status(500).send('Hubo un error al crear el registro');
+        
     }
 }
+
 
 
 exports.obtenerPedidos = async (req, res) => {
@@ -44,10 +44,9 @@ exports.actualizarPedido = async (req, res) => {
             res.status(404).json({ msg: 'No existe el pedido.'})
 
         }
-        pedido.NombrePlatillo = nombreplatillo;
-        pedido.Cantidad = cantidad;
-        pedido.PrecioPlatillo = precioplatillo;
-
+        pedido.nombreplatillo = nombreplatillo;
+        pedido.cantidad = cantidad;
+        pedido.precioplatillo = precioplatillo;
 
         pedido = await Pedido.findOneAndUpdate({ _id: req.params.id},pedido, {new: true});
         res.json(pedido)

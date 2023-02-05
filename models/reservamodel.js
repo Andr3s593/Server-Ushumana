@@ -1,38 +1,40 @@
 const mongoose = require('mongoose');
-const usuariomodel = require('./usuariomodel');
 
 const ReservaSchema = mongoose.Schema({
-    id: {
-        type: Number, 
+    Fechadecreacion: {
+        type: Date, 
         default: Date.now()
    },
-    Usuario: {
-    usuario: usuariomodel,
+    nombres: {
+    type: String,
     required: true
-    },
-    Servicio: {
-        servicio: ServicioModel,
-        required: true
-    },
-    Detalle: {
+    },   
+    apellidos: {
         type: String,
         required: true,
-        unique: true
+       
     },
-    Numero_adultos: {
+    numeroadultos: {
         type: Number,
         required: true,
-        select: false
+       
     },
-    Numero_niños: {
+    numeroninos: {
         type: Number,
         required: true,
-        select: false
+      
     },
-    
-    Mascotas: {
-        type: Boolean,
+    fechadereserva: {
+        type: Date, 
+        required: true,
+   },    
+    mascotas: {
+        type: Number,
         required: true
+    },
+    descripcion: {
+        type: String,
+        required: true,       
     }
 });
 module.exports = mongoose.model('Reserva', ReservaSchema);

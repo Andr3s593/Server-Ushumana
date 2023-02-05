@@ -39,19 +39,18 @@ exports.obtenerUsuarios = async (req, res) => {
 exports.actualizarUsuario = async (req, res) => {
 
     try {
-        const { nombres, apellidos, email, password, fecha_de_nacimiento} = req.body;
+        const { nombres, apellidos, email, password, fechadenacimiento} = req.body;
 
         let usuario = await Usuario.findById(req.params.id);
 
         if(!usuario) {
             res.status(404).json({ msg: 'No existe tal cosa o producto'})
-
         }
         usuario.nombres = nombres;
         usuario.apellidos = apellidos;
         usuario.email = email;
         usuario.password = password;
-        usuario.fecha_de_nacimiento = fecha_de_nacimiento;
+        usuario.fechadenacimiento = fechadenacimiento;
 
         usuario = await Usuario.findOneAndUpdate({ _id: req.params.id},usuario, {new: true});
         res.json(usuario)
