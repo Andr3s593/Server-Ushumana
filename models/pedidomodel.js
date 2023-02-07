@@ -9,7 +9,10 @@ const PedidoSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
+    imagen:{
+        type: String,
+        required: true
+    },
     cantidad: {
         type: Number,
         required: true

@@ -5,31 +5,30 @@ const TicketsSchema = mongoose.Schema({
         type: Date, 
         default: Date.now()
    },
-    Usuario: {
+    usuario: {
     type: String,
     required: true
     },
-    Servicio: {
+    servicio: {
         type: String,
         required: true
     },
-    Detalle: {
+    detalle: {
         type: String,
         required: true,
         unique: true
     },
-    Numero_adultos: {
+    numeroadultos: {
         type: Number,
         required: true,
         select: false
     },
-    Numero_niños: {
+    numeroninos: {
         type: Number,
         required: true,
         select: false
-    },
-    
-    Mascotas: {
+    },    
+    mascotas: {
         type: Number,
         required: true
     }

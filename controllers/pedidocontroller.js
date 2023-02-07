@@ -36,7 +36,7 @@ exports.obtenerPedidos = async (req, res) => {
 exports.actualizarPedido = async (req, res) => {
 
     try {
-        const { nombreplatillo, cantidad, precioplatillo} = req.body;
+        const { nombreplatillo,imagen, cantidad, precioplatillo} = req.body;
 
         let pedido = await Pedido.findById(req.params.id);
 
@@ -45,6 +45,7 @@ exports.actualizarPedido = async (req, res) => {
 
         }
         pedido.nombreplatillo = nombreplatillo;
+        pedido.imagen = imagen;
         pedido.cantidad = cantidad;
         pedido.precioplatillo = precioplatillo;
 

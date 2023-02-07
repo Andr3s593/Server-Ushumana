@@ -1,26 +1,19 @@
-const Ticket = require("../models/ticketsmodel");
+const Ticket = require("../models/ticketmodel");
 
-
-exports.creartickets = async (req, res) => {
+exports.crearTicket = async (req, res) => {
     try {
-        const exist = await tickets.findOne({ id: req.body.id });
-        if (exist) return res.status(400).send({error: 'La tickets ya existe.'});
-
-        let tickets = new Ticket(req.body);
-
-        // Guardamos el usuario en la base de datos
-        await tickets.save();
-
-        // Enviamos la respuesta al cliente
-        res.send(tickets);
+        let ticket;
+        //Creamos el ticket
+        ticket = new Ticket(req.body);
+        await ticket.save();
+        res.send(ticket);
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Hubo un error al crear la tickets.');
+        console.log(error),
+        res.status(500).send('Hubo un error al crear el registro');        
     }
 }
 
-
-exports.obtenertickets = async (req, res) => {
+exports.obtenerTickets = async (req, res) => {
 
     try {
         
@@ -29,73 +22,68 @@ exports.obtenertickets = async (req, res) => {
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al obtener las tickets.');
+        res.status(500).send('Hubo un error al obtener los tickets.');
         
     }
 }
-
-exports.actualizartickets = async (req, res) => {
-
+exports.actualizarTicket = async (req, res) => {
     try {
-        const { usuario, servicio, detalle, numero_adultos, numero_niños, mascotas} = req.body;
+        const { nombres, apellidos,numeroadultos,numeroninos, fechadeticket, mascotas, descripcion } = req.body;
 
-        let tickets = await tickets.findById(req.params.id);
+        let ticket = await Ticket.findById(req.params.id);
 
-        if(!tickets) {
-            res.status(404).json({ msg: 'No existe la tickets.'})
-
+        if (!ticket) {
+            return res.status(404).json({ msg: 'No se encontró el ticket.' });
         }
-        tickets.Usuario = usuario;
-        tickets.Servicio = servicio;
-        tickets.Detalle = detalle;
-        tickets.Numero_adultos = numero_adultos;
-        tickets.Numero_niños = numero_niños;
-        tickets.Mascotas = mascotas;
 
+        ticket.nombres = nombres;
+        ticket.apellidos = apellidos;
+        ticket.numeroadultos = numeroadultos;
+        ticket.numeroninos = numeroninos;
+        ticket.fechadeticket = fechadeticket;
+        ticket.mascotas = mascotas;
+        ticket.descripcion = descripcion;        
 
-        tickets = await tickets.findOneAndUpdate({ _id: req.params.id},tickets, {new: true});
-        res.json(tickets)
-
-
+        ticket = await Ticket.findOneAndUpdate({ _id: req.params.id }, ticket, { new: true });
+        return res.status(200).json(ticket);
     } catch (error) {
-        console.log(error)
-        res.status(500).send('Hubo un error al actualizar la tickets.');
+        console.log(error);
+        return res.status(500).send('Hubo un error al actualizar el ticket.');
     }
+};
 
-}
 
-exports.obtenertickets = async (req, res) => {
+exports.obtenerTicket = async (req, res) => {
 
     try {
-        let tickets = await tickets.findById(req.params.id);
-        if(!tickets) {
-            res.status(404).json({ msg: 'No existe la tickets.'})
-
+        let ticket = await Ticket.findById(req.params.id);
+        if(!ticket) {
+            res.status(404).json({ msg: 'No existe el ticket.'})
         }
-        res.json(tickets)
+        res.json(ticket)
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al obtener la tickets.');
+        res.status(500).send('Hubo un error al obtener el ticket.');
     }
 }
 
-exports.eliminartickets = async (req, res) => {
+exports.eliminarTicket = async (req, res) => {
 
     try {
-        let tickets = await tickets.findById(req.params.id);
+        let ticket = await Ticket.findById(req.params.id);
 
-        if(!tickets) {
-            res.status(404).json({ msg: 'No existe la tickets.'})
+        if(!ticket) {
+            res.status(404).json({ msg: 'No existe el ticket.'})
 
         }
-        await tickets.findOneAndRemove({ _id: req.params.id })
-        res.json({ msg:'tickets eliminada exitosamente.'})
+        await Ticket.findOneAndRemove({ _id: req.params.id })
+        res.json({ msg:'Ticket eliminado exitosamente.'})
 
 
     } catch (error) {
         console.log(error),
-        res.status(500).send('Hubo un error al eliminar la tickets.');
+        res.status(500).send('Hubo un error al eliminar el ticket.');
     }
 
 }
