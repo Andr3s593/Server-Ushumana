@@ -28,14 +28,14 @@ exports.obtenerReservas = async (req, res) => {
 }
 exports.actualizarReserva = async (req, res) => {
     try {
-        const { nombres, apellidos,numeroadultos,numeroninos, fechadereserva, mascotas, descripcion } = req.body;
+        const { imagen, nombres, apellidos,numeroadultos,numeroninos, fechadereserva, mascotas, descripcion } = req.body;
 
         let reserva = await Reserva.findById(req.params.id);
 
         if (!reserva) {
             return res.status(404).json({ msg: 'No se encontró el reserva.' });
         }
-
+        reserva.imagen = imagen;
         reserva.nombres = nombres;
         reserva.apellidos = apellidos;
         reserva.numeroadultos = numeroadultos;

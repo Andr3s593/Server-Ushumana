@@ -19,6 +19,9 @@ app.use('/api/pedidos-Ushumana',require('./routes/pedidoroutes'));
 //FormaPago// 
 app.use('/api/pagoTarjeta-Ushumana',require('./routes/formapagoroutes'));
 //Fin FormaPago//
+//ticket// 
+app.use('/api/ticket-Ushumana',require('./routes/ticketsroutes'));
+//Fin ticket//
 app.listen(4000, () => {
     console.log('Connected....Server')
 })

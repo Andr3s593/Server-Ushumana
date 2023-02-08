@@ -5,6 +5,10 @@ const ReservaSchema = mongoose.Schema({
         type: Date, 
         default: Date.now()
    },
+   imagen: {
+    type: String,
+    required: true
+    },   
     nombres: {
     type: String,
     required: true
@@ -25,7 +29,7 @@ const ReservaSchema = mongoose.Schema({
       
     },
     fechadereserva: {
-        type: Date, 
+        type: String, 
         required: true,
    },    
     mascotas: {

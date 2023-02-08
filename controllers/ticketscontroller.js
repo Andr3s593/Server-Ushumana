@@ -1,4 +1,4 @@
-const Ticket = require("../models/ticketmodel");
+const Ticket = require("../models/ticketsmodel");
 
 exports.crearTicket = async (req, res) => {
     try {
@@ -28,21 +28,19 @@ exports.obtenerTickets = async (req, res) => {
 }
 exports.actualizarTicket = async (req, res) => {
     try {
-        const { nombres, apellidos,numeroadultos,numeroninos, fechadeticket, mascotas, descripcion } = req.body;
+        const {imagen, numeroadultos, numeroninos,numeroterceraedad,numerdiscapacitados, precio} = req.body;
 
         let ticket = await Ticket.findById(req.params.id);
 
         if (!ticket) {
             return res.status(404).json({ msg: 'No se encontró el ticket.' });
         }
-
-        ticket.nombres = nombres;
-        ticket.apellidos = apellidos;
+        ticket.imagen = imagen;
         ticket.numeroadultos = numeroadultos;
         ticket.numeroninos = numeroninos;
-        ticket.fechadeticket = fechadeticket;
-        ticket.mascotas = mascotas;
-        ticket.descripcion = descripcion;        
+        ticket.numeroterceraedad = numeroterceraedad;
+        ticket.numerdiscapacitados = numerdiscapacitados;
+        ticket.precio = precio;        
 
         ticket = await Ticket.findOneAndUpdate({ _id: req.params.id }, ticket, { new: true });
         return res.status(200).json(ticket);

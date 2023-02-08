@@ -1,14 +1,14 @@
 //Rutas para producto
 const express = require('express');
 const router = express.Router();
-const ticketscontroller = require('../controllers/ticketscontroller');
+const ticketcontroller = require('../controllers/ticketscontroller');
 
 //API Usuariocontroller
 
-router.post('/', ticketsontroller.creartickets);
-router.get('/' , ticketscontroller.obtenerticketss);
-router.put('/:id' , ticketscontroller.actualizartickets);
-router.get('/:id' ,ticketscontroller.obtenertickets);
-router.delete('/:id' ,ticketscontroller.eliminartickets);
+router.post('/', ticketcontroller.crearTicket);
+router.get('/' , ticketcontroller.obtenerTickets);
+router.put('/:id' , ticketcontroller.actualizarTicket);
+router.get('/:id' ,ticketcontroller.obtenerTicket);
+router.delete('/:id' ,ticketcontroller.eliminarTicket);
 
 module.exports = router;
